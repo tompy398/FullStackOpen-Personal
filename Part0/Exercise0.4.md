@@ -5,7 +5,7 @@ sequenceDiagram
     participant server
     
     user->>browser: Place Pointer on Text Input Field
-    user->>browser: Type Somthing in Text Input Field
+    user->>browser: Type Something in Text Input Field
     user->>browser: Press Browser Page Submit Button
     
     browser->>server: Send HTTP POST Request
