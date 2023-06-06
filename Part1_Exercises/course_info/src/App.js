@@ -1,3 +1,5 @@
+/*
+// Exercise 1.3
 const Header = (param) => {
   return (
     <>
@@ -34,18 +36,156 @@ const Total = (param) => {
 
 const App = () => {
   const course = 'Half Stack application development'
-  const part1 = 'Fundamentals of React'
-  const exercises1 = 10
-  const part2 = 'Using props to pass data'
-  const exercises2 = 7
-  const part3 = 'State of a component'
-  const exercises3 = 14
+  const part1 = {
+    name: 'Fundamentals of React',
+    exercises: 10
+  }
+  const part2 = {
+    name: 'Using props to pass data',
+    exercises: 7
+  }
+  const part3 = {
+    name: 'State of a component',
+    exercises: 14
+  }
 
   return (
     <div>
       <Header course={course} />
-      <Content p_name1={part1} p_name2={part2} p_name3={part3} e_num1={exercises1} e_num2={exercises2} e_num3={exercises3}/>
-      <Total total={exercises1 + exercises2 + exercises3}/>
+      <Content p_name1={part1['name']} p_name2={part2['name']} p_name3={part3['name']} e_num1={part1['exercises']} e_num2={part2['exercises']} e_num3={part3['exercises']} />
+      <Total total={part1['exercises'] + part2['exercises'] + part3['exercises']} />
+    </div>
+  )
+}
+
+*/
+/*
+
+// Exercise 1.4
+const Header = (course) => {
+  return (
+    <>
+      <p>{course[0]}</p>
+    </>
+  )
+}
+
+const Content = (holder) => {
+  console.log(holder.parts[0].name);
+  return (
+    <div>
+      <Part name={holder.parts[0]['name']} num={holder.parts[0]['exercises']} />
+      <Part name={holder.parts[1]['name']} num={holder.parts[1]['exercises']} />
+      <Part name={holder.parts[2]['name']} num={holder.parts[2]['exercises']} />
+    </div>
+  )
+}
+
+const Part = (param) => {
+  return (
+    <>
+      <p>{param.name} {param.num}</p>
+    </>
+  )
+}
+
+const Total = (holder) => {
+  return (
+    <>
+      <p>Number of exercises {holder.parts[0]['exercises'] + holder.parts[1]['exercises'] + holder.parts[2]['exercises']}</p>
+    </>
+  )
+}
+
+const App = () => {
+  const course = ['Half Stack application development']
+  const parts = [
+    {
+      name: 'Fundamentals of React',
+      exercises: 10
+    },
+    {
+      name: 'Using props to pass data',
+      exercises: 7
+    },
+    {
+      name: 'State of a component',
+      exercises: 14
+    }
+  ]
+
+  return (
+    <div>
+      <Header course={course} />
+      <Content parts={parts} />
+      <Total parts={parts} />
+    </div>
+  )
+}
+
+*/
+
+
+// Exercise 1.5
+const Header = (course) => {
+  return (
+    <>
+      <p>{course[0]}</p>
+    </>
+  )
+}
+
+const Content = (holder) => {
+  console.log(holder.parts[0].name);
+  return (
+    <div>
+      <Part name={holder.parts[0]['name']} num={holder.parts[0]['exercises']} />
+      <Part name={holder.parts[1]['name']} num={holder.parts[1]['exercises']} />
+      <Part name={holder.parts[2]['name']} num={holder.parts[2]['exercises']} />
+    </div>
+  )
+}
+
+const Part = (param) => {
+  return (
+    <>
+      <p>{param.name} {param.num}</p>
+    </>
+  )
+}
+
+const Total = (holder) => {
+  return (
+    <>
+      <p>Number of exercises {holder.parts[0]['exercises'] + holder.parts[1]['exercises'] + holder.parts[2]['exercises']}</p>
+    </>
+  )
+}
+
+const App = () => {
+  const course = {
+    name: 'Half Stack application development',
+    parts: [
+      {
+        name: 'Fundamentals of React',
+        exercises: 10
+      },
+      {
+        name: 'Using props to pass data',
+        exercises: 7
+      },
+      {
+        name: 'State of a component',
+        exercises: 14
+      }
+    ]
+  }
+
+  return (
+    <div>
+      <Header course={course.name} />
+      <Content parts={course.parts} />
+      <Total parts={course.parts} />
     </div>
   )
 }
