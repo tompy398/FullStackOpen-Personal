@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client'
 
 import App from './App'
 
+import axios from 'axios'
+/*
 const notes = [
   {
     id: 1,
@@ -20,7 +22,27 @@ const notes = [
     important: true
   }
 ]
+*/
+/*
+const promise = axios.get('http://localhost:3001/notes')
+console.log(promise)
+
+promise.then(response => {
+  console.log(response)
+})
+const promise2 = axios.get('http://localhost:3001/foobar')
+console.log(promise2)
+*/
+
+/*
+axios
+  .get('http://localhost:3001/notes')
+  .then(response => {
+    const notes = response.data
+    ReactDOM.createRoot(document.getElementById('root')).render(<App notes={notes} />)
+  })
+*/
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <App notes={notes} />
+  <App />
 )
