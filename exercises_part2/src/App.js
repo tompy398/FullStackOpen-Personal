@@ -323,7 +323,7 @@ const DisplayPersons = ({ persons, newFilter}) => {
       {filteredArr.map( (filteredPerson) => {
         return <Person name={filteredPerson.name} phoneNumber={filteredPerson.number} key={filteredPerson.id} />
       })}
-    </>
+    </> 
   )
 }
 
@@ -485,9 +485,7 @@ import personServices from './services/persons.js'
 
 const Person = ({ person, onDelete }) => {
   return (
-    <>
-      <p>{person.name} {person.number} <button onClick={ () => onDelete(person.name, person.id)}>delete</button></p> 
-    </>
+    <p>{person.name} {person.number} <button onClick={ () => onDelete(person.name, person.id)}>delete</button></p> 
   )
 }
 
@@ -529,15 +527,37 @@ const DisplayPersons = ({ persons, newFilter, onDelete}) => {
   )
 }
 
+const Notification = ({ message }) => {
+    
+  const notificationStyle = {
+    color: 'black',
+    fontWeight: 'bold',
+    backgroundColor: 'gray',
+    border: '2px solid green',
+    padding: '5px'
+  }
+
+  if (message === null) {
+    return null
+  }
+
+  return (
+    <div className='success_add' style={notificationStyle}>
+      {message}
+    </div>
+  )
+}
+
 const App = () => {
   const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [newFilter, setNewFilter] = useState('')
+  const [newMessage, setMessage] = useState(null)
 
   useEffect( () => {
     personServices
-      .getInitial()
+      .getInitial() 
       .then(response => {
         setPersons(response)
       })
@@ -584,6 +604,7 @@ const App = () => {
           setPersons(persons.concat(response))
           setNewName('')
           setNewNumber('')
+          setMessage(response.name + ' was successfully added')
         })
         .catch(error => {
           alert('Something went wrong at adding people!')
@@ -620,12 +641,13 @@ const App = () => {
 
   return (
     <div>
+      <Notification message={newMessage} />
       <h2>Phonebook</h2>
-      <Filter newFilter={newFilter} handleFilterChange={handleFilterChange}/>
+      <Filter newFilter={newFilter} handleFilterChange={handleFilterChange} />
       <h2>Add a new</h2>
-      <PersonForm newName={newName} handleNameChange={handleNameChange} newNumber={newNumber} handleNumberChange={handleNumberChange} addInfo={addInfo}/>
+      <PersonForm newName={newName} handleNameChange={handleNameChange} newNumber={newNumber} handleNumberChange={handleNumberChange} addInfo={addInfo} />
       <h2>Numbers</h2>
-      <DisplayPersons persons={persons} newFilter={newFilter} onDelete={onDelete}/>
+      <DisplayPersons persons={persons} newFilter={newFilter} onDelete={onDelete} />
     </div>
   )
 }
