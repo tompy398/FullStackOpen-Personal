@@ -393,10 +393,11 @@ const App = () => {
 }
 */
 
-/*
+
 //Notes 2.d
+// Used with Part 3.b Front End and Part 3.a Back End
+// Moved to VITE from Create-React-App
 import { useState, useEffect } from 'react'
-import axios from 'axios'
 import Note from './components/Note'
 import noteService from './services/notes'
 
@@ -477,8 +478,8 @@ const App = () => {
     </div>
   )
 }
-*/
 
+/*
 // Exercise 2.12-2.15
 import { useState, useEffect } from 'react'
 import personServices from './services/persons.js'
@@ -651,4 +652,5 @@ const App = () => {
     </div>
   )
 }
+*/
 export default App
