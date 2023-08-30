@@ -14,11 +14,26 @@ mongoose.connect(url)
 const phonebookSchema = new mongoose.Schema({
     name: {
         type: String,
-        minLength: 3,
+        validate: {
+            validator: (val) => {
+                if (val.length < 8) {
+                    return false
+                }
+                return true
+            },
+            message: 'String must be equal or greater 8 characters'
+        },
         required: true
     },
     number: {
         type: String,
+        validate: {
+            validator: (val) => {
+                const re = new RegExp('^[0-9]{2,3}-[0-9]{6,}')
+                return re.test(val)
+            },
+            message: 'The number must follow a strict format'
+        },
         required: true
     }
 })
